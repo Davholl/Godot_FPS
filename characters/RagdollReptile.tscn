@@ -1,0 +1,188 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://characters/enemies/raw_assets/reptilemonster/reptilemonster.glb" type="PackedScene" id=1]
+[ext_resource path="res://characters/SkeletonRagdoll.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.0599178
+height = 0.310004
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.188152
+height = 0.349728
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.188152
+height = 0.002
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.105569
+height = 0.310004
+
+[sub_resource type="CapsuleShape" id=5]
+radius = 0.079141
+height = 0.310004
+
+[node name="RagdollReptile" type="Spatial"]
+
+[node name="reptilemonster" parent="." instance=ExtResource( 1 )]
+
+[node name="Skeleton" parent="reptilemonster/Armature" index="0"]
+script = ExtResource( 2 )
+
+[node name="UL_Arm" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="1"]
+transform = Transform( -0.768204, 0.639068, -0.0381404, -0.634004, -0.767684, -0.0932756, -0.0888892, -0.0474735, 0.994909, 0.218738, 1.59086, 0.0117653 )
+joint_type = 3
+body_offset = Transform( 1, -2.13739e-07, 0, 2.23517e-08, 1, 0, 3.72529e-08, 7.45058e-09, 1, 0, 0, 0 )
+mass = 0.05
+weight = 0.49
+bone_name = "upper_arml"
+joint_constraints/angular_limit_enabled = false
+joint_constraints/angular_limit_upper = 90.0
+joint_constraints/angular_limit_lower = -90.0
+joint_constraints/angular_limit_bias = 0.3
+joint_constraints/angular_limit_softness = 0.9
+joint_constraints/angular_limit_relaxation = 1.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/UL_Arm"]
+transform = Transform( 0.553421, 0.832901, 0.000973624, 0.0835502, -0.0566788, 0.994891, 0.828699, -0.550512, -0.100956, -0.0135372, 0.0689913, 0.0380728 )
+shape = SubResource( 1 )
+
+[node name="Body" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="2"]
+transform = Transform( 1, -1.22469e-07, -2.38419e-07, -2.97038e-09, 0.994477, -0.104958, 2.54413e-07, 0.104958, 0.994477, 2.84689e-18, 1.20205, -0.042127 )
+joint_type = 1
+body_offset = Transform( 1, -1.22469e-07, 1.56319e-13, 2.37487e-08, 1, 3.72529e-08, 1.49011e-08, -2.98023e-08, 1, 0, 0, 0 )
+bone_name = "body"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/Body"]
+transform = Transform( 0.999999, -3.62678e-07, -1.195e-07, 2.2919e-07, -0.0148349, 0.99989, -2.80823e-07, -0.999889, -0.0148349, 0.0221449, 0.369296, -0.00564569 )
+shape = SubResource( 2 )
+
+[node name="Hip" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="3"]
+transform = Transform( 1, -1.22469e-07, 4.26326e-14, 2.01812e-08, 0.978673, -0.205425, 1.94619e-08, 0.205425, 0.978673, 2.84689e-18, 0.948998, -0.0952436 )
+joint_type = 1
+body_offset = Transform( 1, -1.22469e-07, 4.26326e-14, 2.37487e-08, 1, 0, 1.49012e-08, 8.9407e-08, 1, 0, 0, 0 )
+bone_name = "hip"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/Hip"]
+transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0.0221448, 0.130282, 0.03256 )
+shape = SubResource( 3 )
+
+[node name="UR_Arm" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="4"]
+transform = Transform( -0.768204, -0.639067, 0.0381405, 0.634004, -0.767684, -0.0932755, 0.0888892, -0.0474735, 0.994909, -0.218738, 1.59086, 0.0117653 )
+joint_type = 1
+body_offset = Transform( 1, -3.24566e-07, 2.98023e-08, -2.23517e-08, 1, -3.35276e-08, -2.98023e-08, -3.72529e-09, 1, 0, 0, 0 )
+mass = 0.05
+weight = 0.49
+bone_name = "upper_armr"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/UR_Arm"]
+transform = Transform( 0.553421, 0.832901, 0.000973624, 0.0835502, -0.0566788, 0.994891, 0.828699, -0.550512, -0.100956, -0.0135372, 0.0689913, 0.0380728 )
+shape = SubResource( 1 )
+
+[node name="LR_Arm" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="5"]
+transform = Transform( -0.859372, -0.371408, 0.351477, 0.510925, -0.651729, 0.56054, 0.0208787, 0.66129, 0.749839, -0.519942, 1.21621, 0.0531138 )
+joint_type = 1
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163944, -0.148389, 0.0551134 )
+body_offset = Transform( 0.998778, 0.0354425, 0.0344629, -0.0324579, 0.995969, -0.0836194, -0.0372876, 0.0823988, 0.995902, 0.0197343, 0.151867, -0.0432718 )
+mass = 0.05
+weight = 0.49
+bone_name = "lower_armr"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/LR_Arm"]
+transform = Transform( 0.553421, 0.832901, 0.000973624, 0.0835502, -0.0566788, 0.994891, 0.828699, -0.550512, -0.100956, -0.0135372, 0.0689913, 0.0380728 )
+shape = SubResource( 1 )
+
+[node name="LL_Arm" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="6"]
+transform = Transform( -0.85727, 0.310491, -0.41071, -0.500874, -0.687634, 0.525628, -0.119215, 0.656319, 0.745006, 0.486024, 1.19621, 0.0503455 )
+joint_type = 1
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0163942, -0.148388, 0.0551134 )
+body_offset = Transform( 0.998777, 0.0354424, 0.0344628, -0.0324581, 0.995969, -0.0836196, -0.0372878, 0.0823988, 0.995902, 0.019734, 0.151866, -0.0432719 )
+mass = 0.05
+weight = 0.49
+bone_name = "lower_arml"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/LL_Arm"]
+transform = Transform( 0.553421, 0.832901, 0.000973624, 0.0835502, -0.0566788, 0.994891, 0.828699, -0.550512, -0.100956, -0.0135372, 0.0689913, 0.0380728 )
+shape = SubResource( 1 )
+
+[node name="UR_Leg" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="7"]
+transform = Transform( -0.962344, -0.154743, -0.223494, 0.0778352, -0.944597, 0.318871, -0.260456, 0.289468, 0.921069, -0.120656, 0.786905, 0.162315 )
+joint_type = 1
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0585402, -0.211474, -0.0932102 )
+body_offset = Transform( 0.998779, 0.0354425, 0.0344628, -0.032458, 0.995969, -0.0836194, -0.0372878, 0.0823988, 0.995902, -0.0477613, 0.204728, 0.112436 )
+mass = 0.2
+weight = 1.96
+bone_name = "upper_legr"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/UR_Leg"]
+transform = Transform( 0.52493, 0.840095, 0.136708, 0.0329859, -0.180576, 0.983008, 0.850505, -0.5115, -0.122501, 0.00651215, 0.0215628, -0.118033 )
+shape = SubResource( 4 )
+
+[node name="UL_Leg" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="8"]
+transform = Transform( -0.94762, 0.31013, 0.0764124, -0.267013, -0.900464, 0.343317, 0.175279, 0.304931, 0.936105, 0.13904, 0.753903, 0.174799 )
+joint_type = 1
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.071282, -0.245072, -0.0935522 )
+body_offset = Transform( 0.976304, -0.185911, 0.110775, 0.198776, 0.972749, -0.119353, -0.0855685, 0.138545, 0.986654, 0.0343945, 0.241397, 0.120158 )
+mass = 0.2
+weight = 1.96
+bone_name = "upper_legl"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/UL_Leg"]
+transform = Transform( 0.52493, 0.840095, 0.136708, 0.0329859, -0.180576, 0.983008, 0.850505, -0.5115, -0.122501, 0.00651215, 0.0215628, -0.118033 )
+shape = SubResource( 4 )
+
+[node name="LL_Leg" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="9"]
+transform = Transform( -0.981842, 0.162696, 0.097558, -0.165425, -0.986006, -0.020534, 0.0928525, -0.0362979, 0.995017, 0.178376, 0.241663, 0.171273 )
+joint_type = 1
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0421141, -0.234145, -0.06732 )
+body_offset = Transform( 0.976304, -0.185911, 0.110776, 0.198776, 0.972748, -0.119353, -0.0855686, 0.138545, 0.986653, 0.00504351, 0.2281, 0.0952574 )
+mass = 0.2
+weight = 1.96
+bone_name = "lowerlegl"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/LL_Leg"]
+transform = Transform( 0.52493, 0.840094, 0.136708, 0.0329859, -0.180576, 0.983008, 0.850506, -0.5115, -0.122501, 0.00439081, -0.00286919, -0.0986383 )
+shape = SubResource( 5 )
+
+[node name="LR_Leg" type="PhysicalBone" parent="reptilemonster/Armature/Skeleton" index="10"]
+transform = Transform( -0.927834, 0.20095, -0.314239, -0.203557, -0.978745, -0.0248602, -0.312557, 0.0409017, 0.949018, -0.188242, 0.241465, 0.169179 )
+joint_type = 1
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0421142, -0.234145, -0.06732 )
+body_offset = Transform( 0.976304, -0.185911, 0.110776, 0.198776, 0.972748, -0.119353, -0.0855686, 0.138545, 0.986654, 0.00504351, 0.228101, 0.0952574 )
+mass = 0.2
+weight = 1.96
+bone_name = "lowerlegr"
+joint_constraints/bias = 0.3
+joint_constraints/damping = 1.0
+joint_constraints/impulse_clamp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="reptilemonster/Armature/Skeleton/LR_Leg"]
+transform = Transform( 0.52493, 0.840094, 0.136708, 0.0329859, -0.180576, 0.983008, 0.850506, -0.5115, -0.122501, 0.00439081, -0.00286919, -0.0986383 )
+shape = SubResource( 5 )
+
+[editable path="reptilemonster"]

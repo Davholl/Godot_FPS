@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://effects/circle32.png" type="Texture" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.0185185, 0.267045 ), 0.0, 4.90909, 0, 0, Vector2( 1, 0.0306818 ), -5.11579, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+direction = Vector3( 0, 1, 0 )
+initial_velocity = 5.0
+scale = 0.2
+scale_curve = SubResource( 2 )
+color = Color( 0.309804, 0.00784314, 0.00784314, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+
+[node name="BloodSpray" type="Spatial"]
+
+[node name="Particles" type="Particles" parent="."]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.98
+local_coords = false
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+autostart = true
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="StartTimer" to="Particles" method="set_emitting" binds= [ true ]]
+[connection signal="timeout" from="DestroyTimer" to="." method="queue_free"]

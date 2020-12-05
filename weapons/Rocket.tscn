@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://weapons/Rocket.gd" type="Script" id=1]
+[ext_resource path="res://effects/raw_assets/muzzleflash3.glb" type="PackedScene" id=2]
+[ext_resource path="res://effects/circle32.png" type="Texture" id=3]
+
+[sub_resource type="SphereShape" id=1]
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="PrismMesh" id=3]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+gravity = Vector3( 0, 0, 0 )
+scale = 0.5
+color_ramp = SubResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=7]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=8]
+material = SubResource( 7 )
+
+[node name="Rocket" type="KinematicBody"]
+collision_mask = 5
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="Graphics" type="Spatial" parent="."]
+
+[node name="Rocket" type="Spatial" parent="Graphics"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Graphics/Rocket"]
+transform = Transform( 0.0962376, 0, 0, 0, 0.178027, 0, 0, 0, 0.372506, 0, 0, -0.510045 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="Graphics/Rocket"]
+transform = Transform( 0.19725, 0, 0, 0, -0.00258539, 0.0395174, 0, -0.27362, -0.0329194, 0, 0, 0.231904 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="MeshInstance3" type="MeshInstance" parent="Graphics/Rocket"]
+transform = Transform( 0.0102029, -0.00258193, 0.0394645, -0.196986, -0.000133731, 0.00204407, 0, -0.27362, -0.0329194, 0, 0, 0.199888 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="muzzleflash3" parent="Graphics/Rocket" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0115228, 0.45716 )
+
+[node name="SmokeTrail" type="Particles" parent="Graphics"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0135904, 0.298278 )
+local_coords = false
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="ShowAfterTimeTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[node name="ExplodeAfterTime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="DestroyAfterHitTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+[connection signal="timeout" from="ShowAfterTimeTimer" to="." method="show"]
+[connection signal="timeout" from="ExplodeAfterTime" to="." method="explode"]
+[connection signal="timeout" from="DestroyAfterHitTimer" to="." method="queue_free"]

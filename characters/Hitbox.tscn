@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://characters/Hitbox.gd" type="Script" id=1]
+
+[node name="Hitbox" type="Area"]
+transform = Transform( 1, -1.25001e-07, -4.65661e-09, 1.25001e-07, 1, -1.86265e-08, 4.65661e-09, 1.86265e-08, 1, 0, 0, 0 )
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 1 )

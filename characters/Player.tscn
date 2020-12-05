@@ -1,0 +1,693 @@
+[gd_scene load_steps=45 format=2]
+
+[ext_resource path="res://characters/Player.gd" type="Script" id=1]
+[ext_resource path="res://characters/WeaponManager.gd" type="Script" id=2]
+[ext_resource path="res://characters/CharacterMover.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/HealthManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://weapons/raw_assets/machete.glb" type="PackedScene" id=5]
+[ext_resource path="res://weapons/raw_assets/shotgun.glb" type="PackedScene" id=6]
+[ext_resource path="res://weapons/raw_assets/machinegun.glb" type="PackedScene" id=7]
+[ext_resource path="res://weapons/raw_assets/rocketlauncher.glb" type="PackedScene" id=8]
+[ext_resource path="res://weapons/HitscanBulletEmitter.tscn" type="PackedScene" id=9]
+[ext_resource path="res://weapons/Weapon.gd" type="Script" id=10]
+[ext_resource path="res://effects/MuzzleFlash.gd" type="Script" id=11]
+[ext_resource path="res://effects/raw_assets/muzzleflash1.glb" type="PackedScene" id=12]
+[ext_resource path="res://effects/raw_assets/muzzleflash3.glb" type="PackedScene" id=13]
+[ext_resource path="res://weapons/DamageArea.tscn" type="PackedScene" id=14]
+[ext_resource path="res://weapons/RocketSpawner.tscn" type="PackedScene" id=15]
+[ext_resource path="res://weapons/crosshairs/crosshair065.png" type="Texture" id=16]
+[ext_resource path="res://effects/raw_assets/muzzleflash2.glb" type="PackedScene" id=17]
+[ext_resource path="res://weapons/crosshairs/crosshair026.png" type="Texture" id=18]
+[ext_resource path="res://weapons/crosshairs/crosshair066.png" type="Texture" id=19]
+[ext_resource path="res://weapons/crosshairs/crosshair001.png" type="Texture" id=20]
+[ext_resource path="res://characters/PickupManager.gd" type="Script" id=21]
+[ext_resource path="res://ui/crypt_domino_1b.png" type="Texture" id=22]
+[ext_resource path="res://ui/Kleinfont.tres" type="DynamicFont" id=23]
+[ext_resource path="res://ui/StatsDisplay.gd" type="Script" id=24]
+[ext_resource path="res://ui/PickupInfo.gd" type="Script" id=25]
+[ext_resource path="res://ui/KLEINTEN.ttf" type="DynamicFontData" id=26]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+
+[sub_resource type="Animation" id=2]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.229539, -0.142692, -0.392863 ), Vector3( 0.229539, -0.142692, -0.273718 ), Vector3( 0.229539, -0.142692, -0.392863 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 25.715, 0, 0 ), Vector3( -73.2486, 58.1764, -50.7013 ), Vector3( -54.8989, 161.929, -158.257 ), Vector3( -65.0415, 130.151, -134.257 ), Vector3( -61.222, 34.4789, -24.095 ), Vector3( 25.715, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.316685, -0.246751, -0.392863 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "attack"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.05 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.277333 ), Vector3( 0, 0, 0 ), Vector3( 0.0895232, -0.234046, -0.111253 ), Vector3( 0.0895232, -0.392004, -0.111253 ), Vector3( 0.0895232, -0.243335, -0.111253 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 77.498, 0, 0 ), Vector3( 77.498, 0, 0 ), Vector3( 77.498, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0.412761 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Weapons:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "moving"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Weapons:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.05, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="SphereShape" id=12]
+radius = 10.0
+
+[sub_resource type="SphereShape" id=13]
+radius = 40.0
+
+[sub_resource type="CapsuleShape" id=14]
+radius = 0.67
+
+[sub_resource type="Animation" id=15]
+resource_name = "heal"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.12549, 1, 0.027451, 0.32549 ), Color( 0, 1, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.027451, 0.027451, 0.32549 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="DynamicFont" id=18]
+size = 24
+font_data = ExtResource( 26 )
+
+[node name="Player" type="KinematicBody" groups=[
+"player",
+]]
+collision_layer = 6
+collision_mask = 3
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0 )
+current = true
+
+[node name="WeaponManager" type="Spatial" parent="Camera"]
+script = ExtResource( 2 )
+
+[node name="Weapons" type="Spatial" parent="Camera/WeaponManager"]
+
+[node name="Sword" type="Spatial" parent="Camera/WeaponManager/Weapons"]
+visible = false
+script = ExtResource( 10 )
+damage = 100
+ammo = -1
+attack_rate = 0.4
+
+[node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/Sword"]
+transform = Transform( 1, 0, 0, 0, 0.900963, -0.433895, 0, 0.433895, 0.900963, 0.229539, -0.142692, -0.392863 )
+
+[node name="machete" parent="Camera/WeaponManager/Weapons/Sword/Graphics" instance=ExtResource( 5 )]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/WeaponManager/Weapons/Sword"]
+autoplay = "idle"
+anims/attack = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
+[node name="BulletEmitters" type="Spatial" parent="Camera/WeaponManager/Weapons/Sword"]
+
+[node name="DamageArea" parent="Camera/WeaponManager/Weapons/Sword/BulletEmitters" instance=ExtResource( 14 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.163089, -0.924687 )
+
+[node name="Crosshair" type="TextureRect" parent="Camera/WeaponManager/Weapons/Sword"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Machine Gun" type="Spatial" parent="Camera/WeaponManager/Weapons"]
+visible = false
+script = ExtResource( 10 )
+automatic = true
+damage = 10
+ammo = 300
+attack_rate = 0.1
+
+[node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/Machine Gun"]
+
+[node name="machinegun" parent="Camera/WeaponManager/Weapons/Machine Gun/Graphics" instance=ExtResource( 7 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.182194, -0.123395, -0.250392 )
+
+[node name="MuzzleFlash" type="Spatial" parent="Camera/WeaponManager/Weapons/Machine Gun/Graphics"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0.176128, -0.0508214, -0.603295 )
+visible = false
+script = ExtResource( 11 )
+flash_time = 0.1
+
+[node name="muzzleflash1" parent="Camera/WeaponManager/Weapons/Machine Gun/Graphics/MuzzleFlash" instance=ExtResource( 12 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+
+[node name="OmniLight" type="OmniLight" parent="Camera/WeaponManager/Weapons/Machine Gun/Graphics/MuzzleFlash"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.272263, 0, 0.650874 )
+shadow_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/WeaponManager/Weapons/Machine Gun"]
+autoplay = "idle"
+anims/attack = SubResource( 4 )
+anims/idle = SubResource( 5 )
+
+[node name="BulletEmitters" type="Spatial" parent="Camera/WeaponManager/Weapons/Machine Gun"]
+
+[node name="HitscanBulletEmitter" parent="Camera/WeaponManager/Weapons/Machine Gun/BulletEmitters" instance=ExtResource( 9 )]
+
+[node name="Crosshair" type="TextureRect" parent="Camera/WeaponManager/Weapons/Machine Gun"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shotgun" type="Spatial" parent="Camera/WeaponManager/Weapons"]
+visible = false
+script = ExtResource( 10 )
+damage = 15
+attack_rate = 0.8
+
+[node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/Shotgun"]
+
+[node name="shotgun" parent="Camera/WeaponManager/Weapons/Shotgun/Graphics" instance=ExtResource( 6 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.0847262, -0.0470178, -0.0604015 )
+
+[node name="MuzzleFlash" type="Spatial" parent="Camera/WeaponManager/Weapons/Shotgun/Graphics"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.0704586, 0, -0.423813 )
+visible = false
+script = ExtResource( 11 )
+
+[node name="muzzleflash3" parent="Camera/WeaponManager/Weapons/Shotgun/Graphics/MuzzleFlash" instance=ExtResource( 13 )]
+
+[node name="OmniLight" type="OmniLight" parent="Camera/WeaponManager/Weapons/Shotgun/Graphics/MuzzleFlash"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11759e-07, 0, 0.816909 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/WeaponManager/Weapons/Shotgun"]
+autoplay = "idle"
+anims/attack = SubResource( 6 )
+anims/idle = SubResource( 7 )
+
+[node name="BulletEmitters" type="Spatial" parent="Camera/WeaponManager/Weapons/Shotgun"]
+
+[node name="HitscanBulletEmitter" parent="Camera/WeaponManager/Weapons/Shotgun/BulletEmitters" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0664817, 0, -0.425226 )
+
+[node name="HitscanBulletEmitter2" parent="Camera/WeaponManager/Weapons/Shotgun/BulletEmitters" instance=ExtResource( 9 )]
+transform = Transform( 0.999048, 0, 0.0436194, 0, 1, 0, -0.0436194, 0, 0.999048, 0.0664817, 0, -0.425226 )
+
+[node name="HitscanBulletEmitter3" parent="Camera/WeaponManager/Weapons/Shotgun/BulletEmitters" instance=ExtResource( 9 )]
+transform = Transform( 0.999048, 0, -0.0436194, 0, 1, 0, 0.0436194, 0, 0.999048, 0.0664817, 0, -0.425226 )
+
+[node name="HitscanBulletEmitter4" parent="Camera/WeaponManager/Weapons/Shotgun/BulletEmitters" instance=ExtResource( 9 )]
+transform = Transform( 0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0.0664817, 0, -0.425226 )
+
+[node name="HitscanBulletEmitter5" parent="Camera/WeaponManager/Weapons/Shotgun/BulletEmitters" instance=ExtResource( 9 )]
+transform = Transform( 0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0.0664817, 0, -0.425226 )
+
+[node name="Crosshair" type="TextureRect" parent="Camera/WeaponManager/Weapons/Shotgun"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rocket Launcher" type="Spatial" parent="Camera/WeaponManager/Weapons"]
+visible = false
+script = ExtResource( 10 )
+damage = 30
+
+[node name="Graphics" type="Spatial" parent="Camera/WeaponManager/Weapons/Rocket Launcher"]
+
+[node name="rocketlauncher" parent="Camera/WeaponManager/Weapons/Rocket Launcher/Graphics" instance=ExtResource( 8 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.194541, -0.0985644, -0.235701 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/WeaponManager/Weapons/Rocket Launcher"]
+autoplay = "idle"
+anims/attack = SubResource( 8 )
+anims/idle = SubResource( 9 )
+
+[node name="BulletEmitters" type="Spatial" parent="Camera/WeaponManager/Weapons/Rocket Launcher"]
+
+[node name="RocketSpawner" parent="Camera/WeaponManager/Weapons/Rocket Launcher/BulletEmitters" instance=ExtResource( 15 )]
+
+[node name="MuzzleFlash" type="Spatial" parent="Camera/WeaponManager/Weapons/Rocket Launcher"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.21676, -0.0637724, -1.20724 )
+visible = false
+script = ExtResource( 11 )
+
+[node name="OmniLight" type="OmniLight" parent="Camera/WeaponManager/Weapons/Rocket Launcher/MuzzleFlash"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.428952, 0.0572007, -0.443903 )
+
+[node name="muzzleflash2" parent="Camera/WeaponManager/Weapons/Rocket Launcher/MuzzleFlash" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0915933, 0 )
+
+[node name="Crosshair" type="TextureRect" parent="Camera/WeaponManager/Weapons/Rocket Launcher"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -36.0
+margin_top = -36.0
+margin_right = 36.0
+margin_bottom = 36.0
+texture = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera/WeaponManager"]
+autoplay = "idle"
+anims/idle = SubResource( 10 )
+anims/moving = SubResource( 11 )
+
+[node name="AlertAreaHearing" type="Area" parent="Camera/WeaponManager"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Camera/WeaponManager/AlertAreaHearing"]
+shape = SubResource( 12 )
+
+[node name="AlertAreaLOS" type="Area" parent="Camera/WeaponManager"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Camera/WeaponManager/AlertAreaLOS"]
+shape = SubResource( 13 )
+
+[node name="FirePoint" type="Spatial" parent="Camera"]
+
+[node name="CharacterMover" parent="." instance=ExtResource( 3 )]
+
+[node name="HealthManager" parent="." instance=ExtResource( 4 )]
+
+[node name="PickupManager" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 2147483656
+script = ExtResource( 21 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PickupManager"]
+transform = Transform( 1, 0, 0, 0, -0.0362949, 0.999341, 0, -0.999341, -0.0362949, 0.058928, 0.9654, 0 )
+shape = SubResource( 14 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RestartMessage" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -138.0
+margin_top = -18.0
+margin_right = 138.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 23 )
+text = "Press 'R' to restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/RestartMessage"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 5.0
+margin_bottom = 5.0
+texture = ExtResource( 22 )
+stretch_mode = 2
+
+[node name="StatsDisplay" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -509.535
+margin_top = -294.126
+margin_right = -233.535
+margin_bottom = -219.126
+custom_fonts/font = ExtResource( 23 )
+text = "Health: 0
+Ammo: 0"
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HealthEffects" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/HealthEffects"]
+autoplay = "start"
+anims/heal = SubResource( 15 )
+anims/hurt = SubResource( 16 )
+anims/start = SubResource( 17 )
+
+[node name="PickupInfo" type="Label" parent="CanvasLayer"]
+margin_left = 2.24493
+margin_top = 96.5317
+margin_right = 367.245
+margin_bottom = 288.532
+custom_fonts/font = SubResource( 18 )
+text = "Picked up Machine Gun!
+Picked up Machine Gun!
+Picked up Machine Gun!
+Picked up Machine Gun!
+Picked up Machine Gun!"
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RemoveInfoTimer" type="Timer" parent="CanvasLayer/PickupInfo"]
+wait_time = 2.0
+[connection signal="ammo_changed" from="Camera/WeaponManager" to="CanvasLayer/StatsDisplay" method="update_ammo"]
+[connection signal="fired" from="Camera/WeaponManager/Weapons/Machine Gun" to="Camera/WeaponManager/Weapons/Machine Gun/Graphics/MuzzleFlash" method="flash"]
+[connection signal="fired" from="Camera/WeaponManager/Weapons/Shotgun" to="Camera/WeaponManager/Weapons/Shotgun/Graphics/MuzzleFlash" method="flash"]
+[connection signal="fired" from="Camera/WeaponManager/Weapons/Rocket Launcher" to="Camera/WeaponManager/Weapons/Rocket Launcher/MuzzleFlash" method="flash"]
+[connection signal="dead" from="HealthManager" to="CanvasLayer/RestartMessage" method="show"]
+[connection signal="healed" from="HealthManager" to="CanvasLayer/HealthEffects/AnimationPlayer" method="play" binds= [ "heal" ]]
+[connection signal="health_changed" from="HealthManager" to="CanvasLayer/StatsDisplay" method="update_health"]
+[connection signal="hurt" from="HealthManager" to="CanvasLayer/HealthEffects/AnimationPlayer" method="play" binds= [ "hurt" ]]
+[connection signal="got_pickup" from="PickupManager" to="CanvasLayer/PickupInfo" method="add_pickups_info"]
+[connection signal="got_pickup" from="PickupManager" to="Camera/WeaponManager" method="got_pickup"]
+[connection signal="timeout" from="CanvasLayer/PickupInfo/RemoveInfoTimer" to="CanvasLayer/PickupInfo" method="remove_pickups_info"]

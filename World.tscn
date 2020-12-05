@@ -1,0 +1,122 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://environments/raw_assets/resources/grass_lowres.png" type="Texture" id=1]
+[ext_resource path="res://environments/assets/shed.tscn" type="PackedScene" id=2]
+[ext_resource path="res://environments/assets/brickwall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://characters/enemies/BirdMonster.tscn" type="PackedScene" id=5]
+[ext_resource path="res://characters/enemies/ReptileMonster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://pickups/RocketLauncherAmmoPickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://pickups/RocketLauncherPickup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://pickups/HealthPickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://pickups/MachineGunPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://pickups/ShotgunPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://pickups/ShotgunAmmoPickup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://characters/RagdollReptile.tscn" type="PackedScene" id=13]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -3.2, 1.4, 2.8, -2.6, 1.4, 0.699997, -2.3, 1.4, -1.1, -7.7, 1.4, 2.8, -2.3, 1.4, -1.1, -0.5, 1.4, -1.1, -0.800003, 1.4, -49.4, -7.1, 1.4, -49.4, -37.4, 1.4, -49.4, -49.4, 1.4, -49.4, -49.4, 1.4, -42.8, -37.4, 1.4, -49.4, -49.4, 1.4, -42.8, -49.4, 1.4, -35.9, -31.4, 1.4, -49.4, -37.4, 1.4, -49.4, -49.4, 1.4, -35.9, -49.4, 1.4, -29.3, -49.4, 1.4, -8.9, -49.4, 1.4, -2, -7.7, 1.4, 2.8, -25.1, 1.4, -49.4, -31.4, 1.4, -49.4, -49.4, 1.4, -29.3, -49.4, 1.4, -22.4, -49.4, 1.4, -15.8, -49.4, 1.4, -8.9, -7.7, 1.4, 2.8, -2.3, 1.4, -1.1, -7.1, 1.4, -49.4, -13.1, 1.4, -49.4, -25.1, 1.4, -49.4, -49.4, 1.4, -22.4, -49.4, 1.4, -15.8, -13.1, 1.4, -49.4, -49.4, 1.4, 4.9, -8, 1.4, 4.9, -7.7, 1.4, 2.8, -49.4, 1.4, -2, -0.5, 1.4, -1.1, 9.1, 1.4, -1.1, 9.4, 1.4, -49.4, -0.800003, 1.4, -49.4, 49.3, 1.4, -43.4, 49.3, 1.4, -49.4, 39.1, 1.4, -49.4, 49.3, 1.4, -37.1, 49.3, 1.4, -43.4, 39.1, 1.4, -49.4, 49.3, 1.4, -30.8, 49.3, 1.4, -37.1, 39.1, 1.4, -49.4, 49.3, 1.4, -24.5, 49.3, 1.4, -30.8, 39.1, 1.4, -49.4, 49.3, 1.4, -24.5, 39.1, 1.4, -49.4, 29.2, 1.4, -49.4, 49.3, 1.4, -18.2, 10.9, 1.4, -1.1, 49.3, 1.4, -5.6, 49.3, 1.4, -11.9, 19.3, 1.4, -49.4, 9.4, 1.4, -49.4, 9.1, 1.4, -1.1, 10.9, 1.4, -1.1, 11.2, 1.4, 1, 49.3, 1.4, 0.699997, 49.3, 1.4, -5.6, 49.3, 1.4, -11.9, 49.3, 1.4, -18.2, 29.2, 1.4, -49.4, 19.3, 1.4, -49.4, -2.6, 1.4, 0.699997, -3.2, 1.4, 2.8, -2.6, 1.4, 3.1, 9.1, 1.4, 1, 10.3, 1.4, 8.5, 9.1, 1.4, 8.2, -2.6, 1.4, 6.7, -4.7, 1.4, 7, -4.4, 1.4, 49.3, 2.8, 1.4, 49.3, 9.1, 1.4, 8.2, 9.1, 1.4, 1, -2.6, 1.4, 3.1, -2.6, 1.4, 6.7, 2.8, 1.4, 49.3, 10.3, 1.4, 49.3, 10.3, 1.4, 8.5, 11.2, 1.4, 1, 11.2, 1.4, 6.4, 49.3, 1.4, 6.7, 49.3, 1.4, 0.699997, -49.4, 1.4, 38.2, -49.4, 1.4, 49.3, -38.6, 1.4, 49.3, -49.4, 1.4, 38.2, -38.6, 1.4, 49.3, -27.8, 1.4, 49.3, -49.4, 1.4, 27.1, -49.4, 1.4, 38.2, -27.8, 1.4, 49.3, -17, 1.4, 49.3, -6.2, 1.4, 49.3, -5.9, 1.4, 7, -8, 1.4, 6.7, -49.4, 1.4, 16, -49.4, 1.4, 27.1, -17, 1.4, 49.3, -8, 1.4, 6.7, -8, 1.4, 4.9, -49.4, 1.4, 4.9, -49.4, 1.4, 16, 39.4, 1.4, 49.3, 49.3, 1.4, 49.3, 49.3, 1.4, 38.5, 29.8, 1.4, 49.3, 39.4, 1.4, 49.3, 49.3, 1.4, 38.5, 29.8, 1.4, 49.3, 49.3, 1.4, 38.5, 49.3, 1.4, 28, 19.9, 1.4, 49.3, 10.3, 1.4, 8.5, 10.3, 1.4, 49.3, 19.9, 1.4, 49.3, 49.3, 1.4, 28, 49.3, 1.4, 17.2, 49.3, 1.4, 6.7, 11.2, 1.4, 6.4, 11.2, 1.4, 8.2, 49.3, 1.4, 6.7, 11.2, 1.4, 8.2, 10.3, 1.4, 8.5, 49.3, 1.4, 17.2, -6.2, 1.4, 49.3, -4.4, 1.4, 49.3, -4.7, 1.4, 7, -5.9, 1.4, 7 )
+polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 3 ), PoolIntArray( 5, 4, 6 ), PoolIntArray( 6, 4, 7 ), PoolIntArray( 10, 9, 8 ), PoolIntArray( 13, 12, 11 ), PoolIntArray( 15, 14, 16 ), PoolIntArray( 16, 14, 17 ), PoolIntArray( 20, 19, 18 ), PoolIntArray( 22, 21, 23 ), PoolIntArray( 23, 21, 24 ), PoolIntArray( 26, 25, 27 ), PoolIntArray( 27, 25, 28 ), PoolIntArray( 28, 25, 30 ), PoolIntArray( 28, 30, 29 ), PoolIntArray( 32, 31, 33 ), PoolIntArray( 33, 31, 34 ), PoolIntArray( 36, 35, 37 ), PoolIntArray( 37, 35, 38 ), PoolIntArray( 39, 42, 40 ), PoolIntArray( 40, 42, 41 ), PoolIntArray( 45, 44, 43 ), PoolIntArray( 48, 47, 46 ), PoolIntArray( 49, 51, 50 ), PoolIntArray( 54, 53, 52 ), PoolIntArray( 55, 58, 56 ), PoolIntArray( 56, 58, 57 ), PoolIntArray( 59, 64, 60 ), PoolIntArray( 60, 64, 61 ), PoolIntArray( 61, 64, 62 ), PoolIntArray( 62, 64, 63 ), PoolIntArray( 66, 65, 67 ), PoolIntArray( 67, 65, 68 ), PoolIntArray( 70, 69, 71 ), PoolIntArray( 71, 69, 72 ), PoolIntArray( 74, 73, 75 ), PoolIntArray( 75, 73, 76 ), PoolIntArray( 78, 77, 79 ), PoolIntArray( 79, 77, 80 ), PoolIntArray( 80, 77, 82 ), PoolIntArray( 80, 82, 81 ), PoolIntArray( 86, 85, 83 ), PoolIntArray( 83, 85, 84 ), PoolIntArray( 89, 88, 87 ), PoolIntArray( 90, 93, 91 ), PoolIntArray( 91, 93, 92 ), PoolIntArray( 96, 95, 94 ), PoolIntArray( 97, 99, 98 ), PoolIntArray( 101, 100, 102 ), PoolIntArray( 102, 100, 103 ), PoolIntArray( 105, 104, 106 ), PoolIntArray( 106, 104, 109 ), PoolIntArray( 106, 109, 108 ), PoolIntArray( 106, 108, 107 ), PoolIntArray( 111, 110, 112 ), PoolIntArray( 112, 110, 113 ), PoolIntArray( 116, 115, 114 ), PoolIntArray( 119, 118, 117 ), PoolIntArray( 121, 120, 122 ), PoolIntArray( 122, 120, 123 ), PoolIntArray( 126, 125, 127 ), PoolIntArray( 127, 125, 128 ), PoolIntArray( 128, 125, 124 ), PoolIntArray( 131, 130, 129 ), PoolIntArray( 133, 132, 134 ), PoolIntArray( 134, 132, 135 ), PoolIntArray( 139, 138, 136 ), PoolIntArray( 136, 138, 137 ) ]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 50, 50, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+size = Vector3( 100, 2, 100 )
+
+[sub_resource type="ConcavePolygonShape" id=4]
+data = PoolVector3Array( -50, 1, 50, 50, 1, 50, -50, -1, 50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, 1, -50, -50, 1, -50, 50, -1, -50, -50, 1, -50, -50, -1, -50, 50, -1, -50, 50, 1, 50, 50, 1, -50, 50, -1, 50, 50, 1, -50, 50, -1, -50, 50, -1, 50, -50, 1, -50, -50, 1, 50, -50, -1, -50, -50, 1, 50, -50, -1, 50, -50, -1, -50, 50, 1, 50, -50, 1, 50, 50, 1, -50, -50, 1, 50, -50, 1, -50, 50, 1, -50, -50, -1, 50, 50, -1, 50, -50, -1, -50, 50, -1, 50, 50, -1, -50, -50, -1, -50 )
+
+[sub_resource type="ProceduralSky" id=5]
+sky_top_color = Color( 0.211765, 0.239216, 0.254902, 1 )
+sky_horizon_color = Color( 0.364706, 0.368627, 0.376471, 1 )
+sun_color = Color( 0.592157, 0.266667, 0.266667, 1 )
+
+[sub_resource type="Environment" id=6]
+background_mode = 2
+background_sky = SubResource( 5 )
+
+[node name="World" type="Spatial"]
+
+[node name="Navigation" type="Navigation" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 1 )
+
+[node name="Environment" type="Spatial" parent="Navigation/NavigationMeshInstance"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ground" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Environment"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/Environment/Ground"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Environment/Ground/StaticBody"]
+shape = SubResource( 4 )
+
+[node name="brickwall" parent="Navigation/NavigationMeshInstance/Environment" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="brickwall2" parent="Navigation/NavigationMeshInstance/Environment" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05711, 1, 0 )
+
+[node name="brickwall3" parent="Navigation/NavigationMeshInstance/Environment" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.02179, 1, 0 )
+
+[node name="brickwall4" parent="Navigation/NavigationMeshInstance/Environment" instance=ExtResource( 3 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 10.1593, 1, 1.71971 )
+
+[node name="brickwall5" parent="Navigation/NavigationMeshInstance/Environment" instance=ExtResource( 3 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 10.1593, 1, 5.71417 )
+
+[node name="shed" parent="Navigation/NavigationMeshInstance/Environment" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.39083, 1.02033, 5.0745 )
+
+[node name="BirdMonster" parent="Navigation" instance=ExtResource( 5 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -5.03486, 1.3305, 11.9625 )
+turn_speed = 90.0
+
+[node name="ReptileMonster" parent="Navigation" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4927, 2.12454, 0.442276 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( 0.156944, -0.987603, 0.00284377, 0.573712, 0.0888262, -0.814226, 0.80388, 0.129419, 0.58054, 0.196762, 24.6112, -67.2935 )
+light_color = Color( 0.886275, 0.529412, 0.529412, 1 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52775, -2.91922 )
+
+[node name="Pickups" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52775, -2.91922 )
+
+[node name="HealthPickup" parent="Pickups" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76089, 1.80771, -8.4207 )
+
+[node name="MachineGunPickup" parent="Pickups" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00434, 0.450286, -6.18447 )
+
+[node name="RocketLauncherAmmoPickup" parent="Pickups" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06403, 0.698727, -6.18447 )
+
+[node name="RocketLauncherPickup" parent="Pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.70906, 0.252393, -6.18447 )
+
+[node name="ShotgunAmmoPickup" parent="Pickups" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.70906, 0.344469, -14.8325 )
+
+[node name="ShotgunPickup" parent="Pickups" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.26713, 0.585031, -11.338 )
+
+[node name="RagdollReptile" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -8 )
